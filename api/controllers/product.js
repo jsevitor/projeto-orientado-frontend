@@ -11,8 +11,10 @@ export const getProducts = (_, res) => {
 };
 
 export const addProducts = (req, res) => {
+  const { nome, marca, categoria, fornecedor_id, picture } = req.body;
+
   const q =
-    "INSERT INTO produtos (`nome`, `marca`, `categoria`, `fornecedor_id`, `picture`) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO produtos (`nome`, `marca`, `categoria`, `picture`) VALUES (?, ?, ?, ?, ?)";
   const values = [nome, marca, categoria, fornecedor_id, picture];
 
   db.query(q, values, (err) => {
@@ -30,10 +32,10 @@ export const updateProducts = (req, res) => {
   const productId = req.params.id;
 
   const q =
-    "UPDATE produtos SET `nome` = ?, `marca` = ?, `categoria` = ?, `fornecedor_id` = ?, `picture` = ? WHERE `id` = ?";
+    "UPDATE produtos SET `nome` = ?, `marca` = ?, `categoria` = ?, `picture` = ? WHERE `id` = ?";
   const values = [nome, marca, categoria, fornecedor_id, picture, productId];
 
-  db.query(q, [...values, req.params.id], (err) => {
+  db.query(q, values, (err) => {
     if (err) return res.json(err);
 
     return res.status(200).json("Produto atualizado com sucesso!");

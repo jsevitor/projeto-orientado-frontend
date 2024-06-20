@@ -5,7 +5,7 @@ import { FormContext } from "../../contexts/FormContext";
 
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
-import { InputField, SelectField } from "../../components/Form/Form";
+import { InputField } from "../../components/Form/Form";
 
 import "react-toastify/dist/ReactToastify.min.css";
 
@@ -19,40 +19,28 @@ const CadastroProduto = () => {
       <FormContainer>
         <InputField
           label={"Nome"}
-          name={"name"}
-          value={produtoData.name}
+          name={"nome"}
+          value={produtoData.nome}
           onChange={(e) => handleChange(e, "produto")}
         />
         <InputField
           label={"Marca"}
-          name={"brand"}
-          value={produtoData.brand}
+          name={"marca"}
+          value={produtoData.marca}
           onChange={(e) => handleChange(e, "produto")}
         />
-        <SelectField
+        <InputField
           label="Categoria"
-          name={"category"}
-          value={produtoData.category}
+          name={"categoria"}
+          value={produtoData.categoria}
           onChange={(e) => handleChange(e, "produto")}
-        >
-          <option value="" disabled>
-            Selecione
-          </option>
-          <option value="opcao1">Opção 1</option>
-          <option value="opcao2">Opção 2</option>
-        </SelectField>
-        <SelectField
+        />
+        <InputField
           label="Fornecedor"
-          name={"supplier"}
-          value={produtoData.supplier}
+          name={"fornecedor"}
+          value={produtoData.fornecedor}
           onChange={(e) => handleChange(e, "produto")}
-        >
-          <option value="" disabled>
-            Selecione
-          </option>
-          <option value="opcao1">Opção 1</option>
-          <option value="opcao2">Opção 2</option>
-        </SelectField>
+        />
         <InputField
           label={"Foto"}
           type={"file"}

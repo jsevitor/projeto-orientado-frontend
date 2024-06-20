@@ -50,17 +50,17 @@ const ListaFornecedores = () => {
             <th>Celular</th>
             <th>E-mail</th>
             <th>Site</th>
-            <th>CEP</th>
+            {/* <th>CEP</th>
             <th>Endereço</th>
             <th>Número</th>
-            <th>Bairro</th>
+            <th>Bairro</th> */}
             <th>Cidade</th>
             <th>Estado</th>
             {/* <th>Banco</th>
             <th>Tipo Conta</th>
             <th>Conta</th>
             <th>Agência Bancária</th> */}
-            <th>PIX</th>
+            {/* <th>PIX</th> */}
           </tr>
         </Thead>
         <Tbody>
@@ -73,17 +73,17 @@ const ListaFornecedores = () => {
               <td>{fornecedor.celular}</td>
               <td>{fornecedor.email}</td>
               <td>{fornecedor.site}</td>
-              <td>{fornecedor.cep}</td>
+              {/* <td>{fornecedor.cep}</td>
               <td>{fornecedor.endereco}</td>
               <td>{fornecedor.numero_endereco}</td>
-              <td>{fornecedor.bairro}</td>
+              <td>{fornecedor.bairro}</td> */}
               <td>{fornecedor.cidade}</td>
               <td>{fornecedor.estado}</td>
               {/* <td>{fornecedor.banco}</td>
               <td>{fornecedor.tipo_conta}</td>
               <td>{fornecedor.conta}</td>
               <td>{fornecedor.agencia_bancaria}</td> */}
-              <td>{fornecedor.pix}</td>
+              {/* <td>{fornecedor.pix}</td> */}
             </tr>
           ))}
         </Tbody>

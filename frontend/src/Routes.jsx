@@ -6,6 +6,8 @@ import EntradaProduto from "./pages/ProdutosEntrada/EntradaProdutos";
 import RetiradaProdutos from "./pages/ProdutosRetirada/RetiradaProdutos";
 import ProdutosCadastrados from "./pages/ProdutosCadastrados/ProdutosCadastrados";
 import ListaUsuarios from "./pages/PainelControle/Usuarios/ListaUsuarios";
+import PainelControle from "./pages/PainelControle/PainelControle";
+import Home from "./pages/Home/Home";
 
 // import Movimentacoes from './pages/Movimentacoes/Movimentacoes';
 // import PainelControle from './pages/PainelControle/PainelControle';
@@ -17,14 +19,14 @@ import ListaUsuarios from "./pages/PainelControle/Usuarios/ListaUsuarios";
 export default () => {
   return (
     <Routes>
-      <Route index element={<CadastroFornecedor />} />
+      <Route index element={<Home />} />
       <Route path="/cadastro-fornecedor" element={<CadastroFornecedor />} />
       <Route path="/cadastro-produto" element={<CadastroProduto />} />
       <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
       <Route path="/entrada-produtos" element={<EntradaProduto />} />
       <Route path="/retirada-produtos" element={<RetiradaProdutos />} />
       <Route path="/produtos-cadastrados" element={<ProdutosCadastrados />} />
-      <Route path="/painel-controle" element={<ListaUsuarios />} />
+      <Route path="/painel-controle" element={<PainelControle />} />
       {/*    <Route path='/movimentacoes' element={<Movimentacoes />} />
           <Route path='/entradas-cadastradas' element={<EntradasCadastradas />}/>
           <Route path='/retiradas-cadastradas' element={<RetiradasCadastradas />}/>

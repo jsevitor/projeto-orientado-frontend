@@ -10,7 +10,9 @@ const Header = () => {
 
   return (
     <Container>
-      <Title>Controle de Estoque</Title>
+      <Title>
+        FRIOS <span>MORETTI</span>
+      </Title>
       {!sidebar ? (
         <MenuButton className={"bi bi-list"} onClick={toggleSidebar} />
       ) : (
