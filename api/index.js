@@ -12,11 +12,30 @@ const port = 3000; // Porta dedicada ao servidor
 app.use(express.json());
 app.use(cors()); // Liberando acesso de qualquer origem
 
-// Use as rotas
+/**
+ * Middleware para todas as rotas de usuários.
+ * @middleware
+ */
 app.use("/", userRoutes);
+
+/**
+ * Middleware para todas as rotas de fornecedores.
+ * @middleware
+ */
 app.use("/", supplierRoutes);
+
+/**
+ * Middleware para todas as rotas de produtos.
+ * @middleware
+ */
 app.use("/", productRoutes); // Use a rota de produtos
 
+/**
+ * Rota inicial para verificar se o servidor está funcionando.
+ * @route GET /
+ * @group Servidor - Verificação de funcionamento do servidor
+ * @returns {string} 200 - Mensagem indicando que o servidor está funcionando
+ */
 app.get("/", (request, response) => {
   return response.send("Servidor funcionando...");
 });

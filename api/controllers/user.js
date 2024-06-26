@@ -1,5 +1,12 @@
 import db from "../db.js";
 
+/**
+ * Obtém todos os usuários da tabela 'usuarios'.
+ *
+ * @param {*} _ - Requisição não utilizada.
+ * @param {*} res - Objeto de resposta para enviar dados ou erros.
+ * @returns {Object} - Retorna um array de objetos JSON contendo todos os usuários ou um objeto de erro.
+ */
 export const getUsers = (_, res) => {
   const q = "SELECT * FROM usuarios;";
 
@@ -10,6 +17,13 @@ export const getUsers = (_, res) => {
   });
 };
 
+/**
+ * Adiciona um novo usuário à tabela 'usuarios'.
+ *
+ * @param {*} req - Objeto de requisição contendo os dados do novo usuário no corpo.
+ * @param {*} res - Objeto de resposta para enviar uma mensagem de sucesso ou erro.
+ * @returns {Object} - Retorna uma mensagem de sucesso ou um objeto de erro em caso de falha na inserção.
+ */
 export const addUsers = (req, res) => {
   const q =
     "INSERT INTO usuarios (nome, cpf, telefone, celular, email, data_nascimento, usuario, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -35,6 +49,13 @@ export const addUsers = (req, res) => {
   });
 };
 
+/**
+ * Atualiza um usuário existente na tabela 'usuarios'.
+ *
+ * @param {*} req - Objeto de requisição contendo os dados atualizados do usuário no corpo e o ID do usuário nos parâmetros da URL.
+ * @param {*} res - Objeto de resposta para enviar uma mensagem de sucesso ou erro.
+ * @returns {Object} - Retorna uma mensagem de sucesso ou um objeto de erro em caso de falha na atualização.
+ */
 export const updateUsers = (req, res) => {
   const q =
     "UPDATE usuarios SET `nome` = ?, `cpf` = ?, `telefone` = ?, `celular` = ?, `email` = ?, `data_nascimento` = ?, `usuario` = ?, `senha` = ? WHERE `id` = ?";
@@ -57,6 +78,13 @@ export const updateUsers = (req, res) => {
   });
 };
 
+/**
+ * Deleta um usuário da tabela 'usuarios' com base no ID fornecido.
+ *
+ * @param {*} req - Objeto de requisição contendo o ID do usuário nos parâmetros da URL.
+ * @param {*} res - Objeto de resposta para enviar uma mensagem de sucesso ou erro.
+ * @returns {Object} - Retorna uma mensagem de sucesso ou um objeto de erro em caso de falha na exclusão.
+ */
 export const deleteUsers = (req, res) => {
   const q = "DELETE FROM usuarios WHERE `id` = ?";
 
