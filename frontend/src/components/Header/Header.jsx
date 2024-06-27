@@ -2,10 +2,27 @@ import { Container, MenuButton, Title } from "./Styles";
 import { useState } from "react";
 import SideBar from "../SideBar/SideBar";
 
+/**
+ * Componente de cabeçalho que inclui um título e um botão de menu que abre uma barra lateral.
+ *
+ * @component
+ * @returns {JSX.Element} O elemento Header.
+ *
+ * @example
+ * // Uso do Header
+ * <Header />
+ */
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
 
+  /**
+   * Função para alternar o estado da barra lateral entre aberto e fechado.
+   */
   const toggleSidebar = () => setSidebar(!sidebar);
+
+  /**
+   * Função para fechar a barra lateral.
+   */
   const closeSidebar = () => setSidebar(false);
 
   return (
@@ -19,7 +36,6 @@ const Header = () => {
         <MenuButton className={"bi bi-x-lg"} onClick={closeSidebar} />
       )}
       {sidebar && <SideBar active={setSidebar} closeSidebar={closeSidebar} />}{" "}
-      {/* Passa a função closeSidebar */}
     </Container>
   );
 };

@@ -1,5 +1,21 @@
 import { CardBody, CardHeader, Container, Icon, Title } from "./Styles";
 
+/**
+ * Componente de card reutilizável.
+ *
+ * @component
+ * @param {Object} props - As props que o componente aceita.
+ * @param {string} props.title - O título a ser exibido no cabeçalho do card.
+ * @param {string} props.icon - A classe do ícone a ser exibido no cabeçalho do card.
+ * @param {React.ReactNode} props.children - O conteúdo a ser exibido no corpo do card.
+ * @returns {JSX.Element} O elemento Card.
+ *
+ * @example
+ * // Card com título e ícone
+ * <Card title="Card Title" icon="icon-class">
+ *   <p>Este é o conteúdo do card.</p>
+ * </Card>
+ */
 const Card = ({ title, icon, children }) => {
   return (
     <Container>
