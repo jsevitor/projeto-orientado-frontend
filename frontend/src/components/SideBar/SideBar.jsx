@@ -25,6 +25,20 @@ import {
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+/**
+ * Componente de barra lateral de navegação.
+ *
+ * @component
+ * @param {Object} props - As props que o componente aceita.
+ * @param {boolean} props.active - Indica se a barra lateral está ativa.
+ * @param {boolean} props.menuCollapsed - Indica se o menu está colapsado.
+ * @param {Function} props.setMenuCollapsed - Função para definir o estado colapsado do menu.
+ * @returns {JSX.Element} O elemento SideBar.
+ *
+ * @example
+ * // Uso do SideBar
+ * <SideBar active={isActive} menuCollapsed={isCollapsed} setMenuCollapsed={setCollapsed} />
+ */
 const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
   const [subMenus, setSubMenus] = useState({
     produtos: localStorage.getItem("isOpenProdutosSubMenu") === "true",
@@ -40,6 +54,10 @@ const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
     localStorage.setItem("menuCollapsed", menuCollapsed);
   }, [subMenus, menuCollapsed]);
 
+  /**
+   * Alterna o estado do sub-menu especificado entre aberto e fechado.
+   * @param {string} menu - O nome do sub-menu a ser alternado.
+   */
   const toggleSubMenu = (menu) => {
     setSubMenus((prev) => ({
       ...prev,
@@ -51,6 +69,9 @@ const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
     }
   };
 
+  /**
+   * Alterna o estado do menu entre colapsado e expandido.
+   */
   const toggleMenu = () => {
     setMenuCollapsed(!menuCollapsed);
 

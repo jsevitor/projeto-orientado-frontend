@@ -1,4 +1,3 @@
-// CadastroUsuario.js
 import { useContext } from "react";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
@@ -7,36 +6,50 @@ import { ButtonContainer, FormContainer } from "./Styles";
 import { FormContext } from "../../contexts/FormContext";
 import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.min.css";
+
+/**
+ * Componente para o formulário de cadastro de usuário.
+ * @component CadastroUsuario
+ * @example
+ * return (
+ *   <CadastroUsuario />
+ * )
+ */
 const CadastroUsuario = () => {
-  const { usuarioData, handleChange, handleCancel, handleClearForm } =
+  const { usuarioData, handleChange, handleSubmit, handleCancel } =
     useContext(FormContext);
 
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/usuarios", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(usuarioData),
-      });
+  /**
+   * Função para lidar com o envio do formulário de cadastro de usuário.
+   */
+  // const handleSubmit = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:3000/usuarios", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(usuarioData),
+  //     });
 
-      if (!response.ok) {
-        throw new Error("Erro ao cadastrar usuário.");
-      }
+  //     if (!response.ok) {
+  //       throw new Error("Erro ao cadastrar usuário.");
+  //     }
 
-      handleClearForm();
-      toast.success("Usuário cadastrado com sucesso!");
-    } catch (error) {
-      console.error("Erro ao cadastrar usuário:", error);
-      toast.error("Erro ao cadastrar usuário.");
-    }
-  };
+  //     handleClearForm();
+  //     toast.success("Usuário cadastrado com sucesso!");
+  //   } catch (error) {
+  //     console.error("Erro ao cadastrar usuário:", error);
+  //     toast.error("Erro ao cadastrar usuário.");
+  //   }
+  // };
 
   return (
-    <Card title={"Cadastro de Usuario"} icon={"bi bi-person-add"}>
+    <Card title={"Cadastro de Usuário"} icon={"bi bi-person-add"}>
       <ToastContainer />
       <FormContainer>
+        {/* Componentes de entrada para cada campo do formulário */}
         <InputField
           label={"Nome"}
           name={"nome"}
@@ -79,7 +92,6 @@ const CadastroUsuario = () => {
           value={usuarioData.data_nascimento}
           onChange={(e) => handleChange(e, "usuario")}
         />
-
         <InputField
           label={"Usuário de Login"}
           name={"usuario"}
@@ -101,6 +113,7 @@ const CadastroUsuario = () => {
           onChange={(e) => handleChange(e, "usuario")}
         />
       </FormContainer>
+      {/* Botões para adicionar e cancelar */}
       <ButtonContainer>
         <Button label={"Adicionar"} onClick={handleSubmit} />
         <Button label={"Cancelar"} onClick={handleCancel} />

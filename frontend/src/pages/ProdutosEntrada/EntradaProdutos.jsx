@@ -7,6 +7,10 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { InputField, SelectField } from "../../components/Form/Form";
 
+/**
+ * Componente responsável pelo formulário de entrada de produtos.
+ * @component EntradaProdutos
+ */
 const EntradaProdutos = () => {
   const { entradaData, handleChange, handleSubmit, handleCancel } =
     useContext(FormContext);

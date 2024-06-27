@@ -1,6 +1,19 @@
-// FormContext.js
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
+
+/**
+ * Contexto para gerenciar dados e funcionalidades de vários formulários.
+ * @typedef {Object} FormContextType
+ * @property {Object} fornecedorData - Dados do formulário de fornecedor.
+ * @property {Object} produtoData - Dados do formulário de produto.
+ * @property {Object} usuarioData - Dados do formulário de usuário.
+ * @property {Object} entradaData - Dados do formulário de entrada.
+ * @property {Object} retiradaData - Dados do formulário de retirada.
+ * @property {Function} handleChange - Função para atualizar os dados do formulário com base no evento de mudança.
+ * @property {Function} handleSubmit - Função para lidar com o envio do formulário (exibe um aviso de preenchimento necessário).
+ * @property {Function} handleCancel - Função para cancelar e redefinir todos os formulários para seus estados iniciais.
+ * @property {Function} handleClearForm - Função para limpar todos os campos dos formulários.
+ */
 
 export const FormContext = createContext();
 
@@ -68,6 +81,11 @@ export const FormProvider = ({ children }) => {
   const [entradaData, setEntradaData] = useState(initialEntradaData);
   const [retiradaData, setRetiradaData] = useState(initialRetiradaData);
 
+  /**
+   * Função para atualizar os dados do formulário com base no evento de mudança.
+   * @param {Event} e - Evento de mudança de input.
+   * @param {string} formType - Tipo de formulário para atualizar.
+   */
   const handleChange = (e, formType) => {
     const { name, value } = e.target;
     switch (formType) {
@@ -106,10 +124,16 @@ export const FormProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Função para lidar com o envio do formulário (exibe um aviso de preenchimento necessário).
+   */
   const handleSubmit = () => {
     toast.warning("Preencha os campos!");
   };
 
+  /**
+   * Função para cancelar e redefinir todos os formulários para seus estados iniciais.
+   */
   const handleCancel = () => {
     setFornecedorData(initialFornecedorData);
     setProdutoData(initialProdutoData);
@@ -118,6 +142,9 @@ export const FormProvider = ({ children }) => {
     setRetiradaData(initialRetiradaData);
   };
 
+  /**
+   * Função para limpar todos os campos dos formulários.
+   */
   const handleClearForm = () => {
     setFornecedorData(initialFornecedorData);
     setProdutoData(initialProdutoData);

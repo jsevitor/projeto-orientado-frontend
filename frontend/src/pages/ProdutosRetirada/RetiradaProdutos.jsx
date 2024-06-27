@@ -7,6 +7,10 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { FormContext } from "../../contexts/FormContext";
 
+/**
+ * Componente responsável pelo formulário de retirada de produtos.
+ * @component RetiradaProdutos
+ */
 const RetiradaProdutos = () => {
   const { retiradaData, handleChange, handleSubmit, handleCancel } =
     useContext(FormContext);

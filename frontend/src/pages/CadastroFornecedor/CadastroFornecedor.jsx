@@ -9,13 +9,24 @@ import { InputField, SelectField } from "../../components/Form/Form";
 
 import "react-toastify/dist/ReactToastify.min.css";
 
+/**
+ * Componente para o formulário de cadastro de fornecedor.
+ * @component CadastroFornecedor
+ * @example
+ * return (
+ *   <CadastroFornecedor />
+ * )
+ */
 const CadastroFornecedor = () => {
   const { fornecedorData, handleChange, handleCancel, handleClearForm } =
     useContext(FormContext);
 
+  /**
+   * Função para lidar com o envio do formulário de cadastro de fornecedor.
+   */
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/forncedores", {
+      const response = await fetch("http://localhost:3000/fornecedores", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +35,7 @@ const CadastroFornecedor = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Erro ao cadastrar usuário.");
+        throw new Error("Erro ao cadastrar fornecedor.");
       }
 
       handleClearForm();
@@ -39,6 +50,7 @@ const CadastroFornecedor = () => {
     <Card title={"Cadastro de Fornecedor"} icon={"bi bi-truck"}>
       <ToastContainer />
       <FormContainer>
+        {/* Componentes de entrada para cada campo do formulário */}
         <InputField
           label={"Nome"}
           name={"nome"}
@@ -154,6 +166,7 @@ const CadastroFornecedor = () => {
           onChange={(e) => handleChange(e, "fornecedor")}
         />
       </FormContainer>
+      {/* Botões para adicionar e cancelar */}
       <ButtonContainer>
         <Button label={"Adicionar"} onClick={handleSubmit} />
         <Button label={"Cancelar"} onClick={handleCancel} />
