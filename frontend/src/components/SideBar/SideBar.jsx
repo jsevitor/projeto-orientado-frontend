@@ -168,7 +168,7 @@ const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
                 <SubMenuItem
                   className={subMenus.movimentacoes ? "collapsedSubMenu" : ""}
                 >
-                  <Link to={"/cadastro-fornecedor"}>
+                  <Link to={"/movimentacoes"}>
                     <ItemTitle>Movimentações</ItemTitle>
                   </Link>
                   <Link to={"/cadastro-fornecedor"}>

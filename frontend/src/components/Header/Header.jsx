@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <Container>
       <Title>
-        FRIOS <span>MORETTI</span>
+        FRIOS<span>MORETTI</span>
       </Title>
       {!sidebar ? (
         <MenuButton className={"bi bi-list"} onClick={toggleSidebar} />

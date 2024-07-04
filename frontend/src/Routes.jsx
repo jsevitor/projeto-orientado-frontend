@@ -8,6 +8,7 @@ import ProdutosCadastrados from "./pages/ProdutosCadastrados/ProdutosCadastrados
 import ListaUsuarios from "./pages/PainelControle/Usuarios/ListaUsuarios";
 import PainelControle from "./pages/PainelControle/PainelControle";
 import Home from "./pages/Home/Home";
+import Movimentacoes from "./pages/Movimentacoes/Movimentacoes";
 
 // import Movimentacoes from './pages/Movimentacoes/Movimentacoes';
 // import PainelControle from './pages/PainelControle/PainelControle';
@@ -27,8 +28,8 @@ export default () => {
       <Route path="/retirada-produtos" element={<RetiradaProdutos />} />
       <Route path="/produtos-cadastrados" element={<ProdutosCadastrados />} />
       <Route path="/painel-controle" element={<PainelControle />} />
-      {/*    <Route path='/movimentacoes' element={<Movimentacoes />} />
-          <Route path='/entradas-cadastradas' element={<EntradasCadastradas />}/>
+      <Route path="/movimentacoes" element={<Movimentacoes />} />
+      {/*   <Route path='/entradas-cadastradas' element={<EntradasCadastradas />}/>
           <Route path='/retiradas-cadastradas' element={<RetiradasCadastradas />}/>
           <Route path='/login' element={<Login />} /> */}
     </Routes>
