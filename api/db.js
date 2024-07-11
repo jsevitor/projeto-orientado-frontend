@@ -17,13 +17,24 @@ let config = {
   host: "localhost",                // Host do banco de dados MySQL
   database: "projeto_orientado",    // Nome do banco de dados
   user: "root",                     // Usuário do banco de dados
-  password: "admin",                // Senha do banco de dados
+  password: "admin",                // Senha do banco de dados MySQL
 };
 
 // Cria uma instância do serverless-mysql com a configuração fornecida
 let db = mysql({
   config: config,
 });
+
+// Função de exemplo: consulta um usuário fictício no banco de dados
+async function consultarUsuario() {
+  try {
+    const results = await db.query('SELECT * FROM usuarios LIMIT 1');
+    return results;
+  } catch (error) {
+    console.error("Erro ao consultar usuário:", error);
+    throw error;
+  }
+}
 
 // Conecta ao banco de dados MySQL
 db.connect((err) => {
@@ -36,3 +47,5 @@ db.connect((err) => {
 
 export default db;
 
+// Exporta a instância do banco de dados e a função para serem utilizadas em outros módulos
+// export { db, consultarUsuario };
