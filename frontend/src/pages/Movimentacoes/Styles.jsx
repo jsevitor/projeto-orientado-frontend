@@ -71,10 +71,12 @@ export const Thead = styled.thead`
   background-color: ${colors.green};
 
   th {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     color: ${colors.white};
     text-align: left;
     border: 1px solid ${colors.veryLightGray};
+    font-size: 14px;
+    text-align: center;
   }
 `;
 
@@ -85,6 +87,7 @@ export const Tbody = styled.tbody`
     height: fit-content;
     // text-align: center;
     border: 1px solid ${colors.veryLightGray};
+    font-size: 13px;
   }
   img {
     width: 20px;
@@ -93,7 +96,7 @@ export const Tbody = styled.tbody`
   }
   i {
     padding: 0.5rem;
-    font-size: 18px;
+    font-size: 14px;
     opacity: 1;
   }
 
@@ -103,5 +106,9 @@ export const Tbody = styled.tbody`
 
   .middle {
     text-align: center;
+  }
+
+  .values {
+    text-align: right;
   }
 `;
