@@ -17,7 +17,7 @@ let config = {
   host: "localhost",                // Host do banco de dados MySQL
   database: "projeto_orientado",    // Nome do banco de dados
   user: "root",                     // Usuário do banco de dados
-  password: "admin",                // Senha do banco de dados
+  password: "admin",                // Senha do banco de dados MySQL
 };
 
 // Cria uma instância do serverless-mysql com a configuração fornecida
