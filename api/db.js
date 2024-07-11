@@ -25,6 +25,17 @@ let db = mysql({
   config: config,
 });
 
+// Função de exemplo: consulta um usuário fictício no banco de dados
+async function consultarUsuario() {
+  try {
+    const results = await db.query('SELECT * FROM usuarios LIMIT 1');
+    return results;
+  } catch (error) {
+    console.error("Erro ao consultar usuário:", error);
+    throw error;
+  }
+}
+
 // Conecta ao banco de dados MySQL
 db.connect((err) => {
   if (err) {
@@ -36,3 +47,5 @@ db.connect((err) => {
 
 export default db;
 
+// Exporta a instância do banco de dados e a função para serem utilizadas em outros módulos
+// export { db, consultarUsuario };
