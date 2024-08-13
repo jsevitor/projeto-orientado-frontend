@@ -58,9 +58,9 @@ export const FormProvider = ({ children }) => {
   };
 
   const initialEntradaData = {
-    produto: "",
+    produto_id: "",
     quantidade: "",
-    fornecedor: "",
+    fornecedor_id: "",
     data_entrada: "",
     numero_lote: "",
     preco_compra: "",

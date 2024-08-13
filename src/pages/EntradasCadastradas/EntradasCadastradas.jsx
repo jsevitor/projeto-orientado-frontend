@@ -16,24 +16,35 @@ import { FormContext } from "../../contexts/FormContext";
 
 const EntradasCadastradas = () => {
   const { setFormData } = useContext(FormContext);
-
   const [inputs, setInputs] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [itemToEdit, setItemToEdit] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await api.get("/entradas");
-        setInputs(response.data);
+        const response = await api.get("/produtos");
+        setProducts(response.data);
       } catch (error) {
-        console.error("Erro ao buscar entradas:", error);
+        console.error("Erro ao buscar produtos:", error);
       }
     };
 
-    fetchData();
+    const fetchSuppliers = async () => {
+      try {
+        const response = await api.get("/fornecedores");
+        setSuppliers(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar fornecedores:", error);
+      }
+    };
+
+    fetchProducts();
+    fetchSuppliers();
   }, []);
 
   const handleOpenModal = () => {
@@ -170,7 +181,15 @@ const EntradasCadastradas = () => {
                   onChange={() => handleCheckboxChange(input.id)}
                 />
               </td>
-              <td>{input.produto}</td>
+              <td>
+                {/* {
+                  // Verificação condicional para obter o nome do fornecedor
+                  products.find(
+                    (product) => product.id === input.product_id
+                  )?.nome || "Desconhecido"
+                } */}
+                {input.produto}
+              </td>
               <td>{input.quantidade}</td>
               <td>{input.fornecedor}</td>
               <td>{formatDate(input.data_entrada)}</td>

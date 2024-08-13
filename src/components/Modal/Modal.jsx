@@ -241,6 +241,13 @@ const ModalEditProdutos = ({ item, onClose }) => {
             value={produtoData.marca || ""}
             onChange={handleFieldChange}
           />
+          <InputField
+            label={"Foto"}
+            name={"picture"}
+            value={produtoData.picture || ""}
+            placeholder={"URL da Imagem"}
+            onChange={handleFieldChange}
+          />
         </FormContainer>
         <ButtonContainer>
           <Button

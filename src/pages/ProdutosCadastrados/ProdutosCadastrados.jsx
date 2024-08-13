@@ -20,6 +20,7 @@ const ProdutosCadastrados = () => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [itemToEdit, setItemToEdit] = useState(null);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +32,17 @@ const ProdutosCadastrados = () => {
       }
     };
 
+    const fetchSuppliers = async () => {
+      try {
+        const response = await api.get("/fornecedores");
+        setSuppliers(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar fornecedores:", error);
+      }
+    };
+
     fetchData();
+    fetchSuppliers();
   }, []);
 
   const handleOpenModal = () => {
@@ -161,11 +172,25 @@ const ProdutosCadastrados = () => {
                 />
               </td>
               <td className="middle">
-                <img src={product.picture} alt={product.nome} />
+                <img
+                  src={
+                    product.picture
+                      ? product.picture
+                      : "https://st2.depositphotos.com/1561359/12101/v/380/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                  }
+                  alt={product.nome}
+                />
               </td>
               <td>{product.nome}</td>
               <td>{product.categoria}</td>
-              <td>{product.fornecedor}</td>
+              <td>
+                {
+                  // Verificação condicional para obter o nome do fornecedor
+                  suppliers.find(
+                    (supplier) => supplier.id === product.fornecedor_id
+                  )?.nome || "Desconhecido"
+                }
+              </td>
               <td>{product.marca}</td>
             </tr>
           ))}

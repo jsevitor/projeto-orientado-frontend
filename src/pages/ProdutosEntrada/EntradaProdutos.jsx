@@ -5,43 +5,52 @@ import { ToastContainer, toast } from "react-toastify";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { InputField, SelectField } from "../../components/Form/Form";
-import api from "../../services/api"; 
+import api from "../../services/api";
 
 const EntradaProdutos = () => {
   const { entradaData, handleChange, handleCancel } = useContext(FormContext);
-
+  const [products, setProducts] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     handleCancel();
-    const fetchData = async () => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get("/produtos");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
+
+    const fetchSuppliers = async () => {
       try {
         const response = await api.get("/fornecedores");
         setSuppliers(response.data);
       } catch (error) {
-        console.error("Erro ao buscar fornecedor:", error);
-        toast.error("Erro ao buscar fornecedores.");
+        console.error("Erro ao buscar fornecedores:", error);
       }
     };
 
-    fetchData();
+    fetchProducts();
+    fetchSuppliers();
   }, []);
 
   const validateFields = () => {
     let validationErrors = {};
 
-    if (!entradaData.produto) {
-      validationErrors.produto = "O campo Produto é obrigatório.";
+    if (!entradaData.produto_id) {
+      validationErrors.produto_id = "O campo Produto é obrigatório.";
     }
 
     if (!entradaData.quantidade) {
       validationErrors.quantidade = "O campo Quantidade é obrigatório.";
     }
 
-    if (!entradaData.fornecedor) {
-      validationErrors.fornecedor = "O campo Fornecedor é obrigatório.";
+    if (!entradaData.fornecedor_id) {
+      validationErrors.fornecedor_id = "O campo Fornecedor é obrigatório.";
     }
 
     if (!entradaData.data_entrada) {
@@ -83,16 +92,17 @@ const EntradaProdutos = () => {
 
     setIsSubmitting(true);
     try {
-      
-        // Enviar uma requisição POST para criar um novo item
-        const response = await api.post("/entradas", entradaData);
-        console.log("Entrada adicionada:", response.data);
-        toast.success("Entrada cadastrada com sucesso!");
-      
+      // Verifique se entradaData está corretamente preenchido
+      console.log("Dados a serem enviados:", entradaData);
+
+      const response = await api.post("/entradas", entradaData);
+      console.log("Entrada adicionada:", response.data);
+      toast.success("Entrada cadastrada com sucesso!");
+
       handleCancel();
     } catch (error) {
-      console.error("Erro ao adicionar/atualizar entrada:", error);
-      toast.error("Erro ao adicionar/atualizar entrada.");
+      console.error("Erro ao adicionar entrada:", error);
+      toast.error("Erro ao adicionar entrada.");
     } finally {
       setIsSubmitting(false);
     }
@@ -102,13 +112,20 @@ const EntradaProdutos = () => {
     <Card title={"Entrada de Produto"} icon={"bi bi-download"}>
       <ToastContainer />
       <FormContainer>
-        <InputField
+        <SelectField
           label={"Produto"}
-          name={"produto"}
-          value={entradaData.produto || ""}
+          name={"produto_id"}
+          value={entradaData.produto_id || ""}
           onChange={handleFieldChange}
-          warn={errors.produto}
-        />
+          warn={errors.produto_id}
+        >
+          <option value="">Selecione</option>
+          {products.map((product) => (
+            <option key={product.id} value={product.id}>
+              {product.nome}
+            </option>
+          ))}
+        </SelectField>
         <InputField
           label={"Quantidade"}
           name={"quantidade"}
@@ -118,20 +135,21 @@ const EntradaProdutos = () => {
         />
         <SelectField
           label={"Fornecedor"}
-          name={"fornecedor"}
-          value={entradaData.fornecedor || ""}
+          name={"fornecedor_id"}
+          value={entradaData.fornecedor_id || ""}
           onChange={handleFieldChange}
-          warn={errors.fornecedor}
+          warn={errors.fornecedor_id}
         >
           <option value="" disabled>
             Selecione
           </option>
           {suppliers.map((supplier, index) => (
-            <option key={index} value={supplier.nome}>
+            <option key={index} value={supplier.id}>
               {supplier.nome}
             </option>
           ))}
         </SelectField>
+
         <InputField
           label={"Data de Entrada"}
           name={"data_entrada"}
@@ -158,7 +176,7 @@ const EntradaProdutos = () => {
       </FormContainer>
       <ButtonContainer>
         <Button
-          label={ "Adicionar"}
+          label={"Adicionar"}
           onClick={handleSubmit}
           disabled={isSubmitting}
         />
