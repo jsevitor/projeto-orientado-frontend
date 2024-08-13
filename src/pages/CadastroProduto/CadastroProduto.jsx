@@ -43,8 +43,8 @@ const CadastroProduto = ({ isEditing = false }) => {
       validationErrors.categoria = "O campo Categoria é obrigatório.";
     }
 
-    if (!produtoData.fornecedor) {
-      validationErrors.fornecedor = "O campo Fornecedor é obrigatório.";
+    if (!produtoData.fornecedor_id) {
+      validationErrors.fornecedor_id = "O campo Fornecedor é obrigatório.";
     }
 
     if (!produtoData.marca) {
@@ -132,20 +132,19 @@ const CadastroProduto = ({ isEditing = false }) => {
         />
         <SelectField
           label={"Fornecedor"}
-          name={"fornecedor"}
-          value={produtoData.fornecedor || ""}
+          name={"fornecedor_id"} // Usar fornecedor_id como nome
+          value={produtoData.fornecedor_id || ""}
           onChange={handleFieldChange}
-          warn={errors.fornecedor}
+          warn={errors.fornecedor_id} // Ajustar para usar fornecedor_id aqui também
         >
-          <option value="" disabled>
-            Selecione
-          </option>
+          <option value="">Selecione</option>
           {suppliers.map((supplier) => (
             <option key={supplier.id} value={supplier.id}>
               {supplier.nome}
             </option>
           ))}
         </SelectField>
+
         <InputField
           label={"Foto"}
           name={"picture"}

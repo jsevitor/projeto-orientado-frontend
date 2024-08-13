@@ -41,7 +41,7 @@ export const FormProvider = ({ children }) => {
     nome: "",
     marca: "",
     categoria: "",
-    fornecedor: "",
+    fornecedor_id: "",
     picture: "",
   };
 
