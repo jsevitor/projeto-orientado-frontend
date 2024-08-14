@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Container,
   Filters,
@@ -11,7 +11,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { Modal, ModalEditRetiradas } from "../../components/Modal/Modal";
 import api from "../../services/api";
-import { formatCustomDate } from "../../utils/functions";
+import { formatCurrency, formatCustomDate } from "../../utils/functions";
 import { FormContext } from "../../contexts/FormContext";
 
 const RetiradasCadastradas = () => {
@@ -29,7 +29,7 @@ const RetiradasCadastradas = () => {
         const response = await api.get("/retiradas");
         setOutputs(response.data);
       } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
+        console.error("Erro ao buscar retiradas:", error);
       }
     };
 
@@ -64,7 +64,7 @@ const RetiradasCadastradas = () => {
       console.log("Item para edição:", item);
       if (item) {
         setItemToEdit(item);
-        setFormData(item, "retirada"); // Passar o tipo de formulário corretamente
+        setFormData(item, "retirada");
         setOpenEditModal(true);
       }
     } else if (selectedItems.length === 0) {
@@ -100,14 +100,12 @@ const RetiradasCadastradas = () => {
 
   const handleDelete = async () => {
     try {
-      // Deletar os itens selecionados
       await Promise.all(
         selectedItems.map((id) => api.delete(`/retiradas/${id}`))
       );
 
-      // Atualizar a lista de retiradas após a exclusão
       const response = await api.get("/retiradas");
-      setInputs(response.data);
+      setOutputs(response.data);
 
       toast.success("Itens deletados com sucesso!");
     } catch (error) {
@@ -140,11 +138,7 @@ const RetiradasCadastradas = () => {
             <i className="bi bi-trash3" onClick={handleOpenModal}></i>
             <i
               className="bi bi-pencil-square"
-              onClick={() =>
-                handleOpenEditModal(
-                  selectedItems[0] // Assumindo que você só pode editar um item por vez
-                )
-              }
+              onClick={handleOpenEditModal}
             ></i>
           </div>
         </Filters>
@@ -187,11 +181,7 @@ const RetiradasCadastradas = () => {
       </Table>
 
       {openModal && (
-        <Modal
-          onConfirm={handleDeleteProduct}
-          onCancel={handleCloseModal}
-          inputs={selectedItems}
-        />
+        <Modal onConfirm={handleDelete} onCancel={handleCloseModal} />
       )}
 
       {openEditModal && itemToEdit && (
