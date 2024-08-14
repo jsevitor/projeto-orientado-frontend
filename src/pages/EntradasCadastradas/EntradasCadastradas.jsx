@@ -182,16 +182,15 @@ const EntradasCadastradas = () => {
                 />
               </td>
               <td>
-                {/* {
-                  // Verificação condicional para obter o nome do fornecedor
-                  products.find(
-                    (product) => product.id === input.product_id
-                  )?.nome || "Desconhecido"
-                } */}
-                {input.produto}
+                {products.find((product) => product.id === input.produto_id)
+                  ?.nome || "Desconhecido"}
               </td>
               <td>{input.quantidade}</td>
-              <td>{input.fornecedor}</td>
+              <td>
+                {suppliers.find(
+                  (supplier) => supplier.id === input.fornecedor_id
+                )?.nome || "Desconhecido"}
+              </td>
               <td>{formatDate(input.data_entrada)}</td>
               <td>{input.numero_lote}</td>
               <td>{formatCurrency(input.preco_compra)}</td>

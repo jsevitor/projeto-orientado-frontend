@@ -126,6 +126,13 @@ const EntradaProdutos = () => {
             </option>
           ))}
         </SelectField>
+        {/* <InputField
+          label={"Produto"}
+          name={"produto_id"}
+          value={entradaData.produto_id || ""}
+          onChange={handleFieldChange}
+          warn={errors.produto_id}
+        /> */}
         <InputField
           label={"Quantidade"}
           name={"quantidade"}
