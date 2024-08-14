@@ -7,10 +7,14 @@ export const Container = styled.div`
 `;
 
 export const Left_Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1rem;
+  width: 100%;
+  font-size: 20%;
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+  }
 `;
 
 export const Welcome = styled.p`
@@ -18,28 +22,48 @@ export const Welcome = styled.p`
 `;
 
 export const Title = styled.div`
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 500;
 
   span {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 200;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 4rem;
+
+    span {
+      font-size: 4rem;
+    }
   }
 `;
 
 export const Slogan = styled.p`
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 300;
 
   span {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+
+    span {
+      font-size: 1.5rem;
+    }
   }
 `;
 
 export const Right_Container = styled.aside`
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr;
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+  }
 `;
 
 export const Grid = styled.div`

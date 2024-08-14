@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://motley-bird-smash.glitch.me/",
+  baseURL: "https://projeto-orientado-backend.onrender.com/",
   // baseURL: "http://localhost:3001/",
 });
 

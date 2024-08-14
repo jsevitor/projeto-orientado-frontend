@@ -5,7 +5,9 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+  overflow-x: auto;
+  overflow-y: auto;
 
   @media (min-width: 768px) {
   }

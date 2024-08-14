@@ -44,12 +44,14 @@ const Movimentacoes = () => {
     // Adicione a lógica para remover os produtos selecionados da lista
   };
 
-  const handleCheckboxChange = (productId) => {
-    setSelectedProducts((prevSelected) =>
-      prevSelected.includes(productId)
-        ? prevSelected.filter((id) => id !== productId)
-        : [...prevSelected, productId]
-    );
+  const handleTableUpdate = async () => {
+    try {
+      const response = await api.get("/movimentacoes");
+      setMovimentacoes(response.data);
+      toast.info("Lista atualizada com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao atualizar a lista.");
+    }
   };
 
   return (
@@ -57,7 +59,14 @@ const Movimentacoes = () => {
       <ToastContainer />
       <HeaderContainer>
         <Title>Movimentações</Title>
-        <Filters></Filters>
+        <Filters>
+          <div className="filter_actions">
+            <i
+              className="bi bi-arrow-clockwise"
+              onClick={handleTableUpdate}
+            ></i>
+          </div>
+        </Filters>
       </HeaderContainer>
       <Table>
         <Thead>
