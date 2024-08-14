@@ -19,7 +19,7 @@ export default () => {
       <Route path="/cadastro-produto" element={<CadastroProduto />} />
       <Route path="/entrada-produtos" element={<EntradaProduto />} />
       <Route path="/retirada-produtos" element={<RetiradaProdutos />} />
-      <Route path="/painel-controle" element={<PainelControle />} />
+      {/* <Route path="/painel-controle" element={<PainelControle />} /> */}
       <Route path="/movimentacoes" element={<Movimentacoes />} />
       <Route path="/produtos-cadastrados" element={<ProdutosCadastrados />} />
       <Route path="/entradas" element={<EntradasCadastradas />} />

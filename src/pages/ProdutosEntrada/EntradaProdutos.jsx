@@ -70,13 +70,51 @@ const EntradaProdutos = () => {
     return Object.keys(validationErrors).length === 0;
   };
 
-  const handleFieldChange = (e) => {
+  // const handleFieldChange = (e) => {
+  //   const { name, value } = e.target;
+  //   handleChange(e, "entrada"); // Passar o tipo de formulário corretamente
+  //   setErrors((prevErrors) => ({
+  //     ...prevErrors,
+  //     [name]: value ? "" : prevErrors[name],
+  //   }));
+  // };
+
+  const handleFieldChange = async (e) => {
     const { name, value } = e.target;
     handleChange(e, "entrada"); // Passar o tipo de formulário corretamente
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: value ? "" : prevErrors[name],
     }));
+
+    if (name === "produto_id" && value) {
+      try {
+        const response = await api.get(`/produtos/${value}`);
+        const selectedProduct = response.data;
+
+        if (selectedProduct.fornecedor_id) {
+          console.log(selectedProduct.fornecedor_id);
+          handleChange(
+            {
+              target: {
+                name: "fornecedor_id",
+                value: selectedProduct.fornecedor_id,
+              },
+            },
+            "entrada"
+          );
+        } else {
+          console.log("Deu erro");
+          handleChange(
+            { target: { name: "fornecedor_id", value: "" } },
+            "entrada"
+          );
+        }
+      } catch (error) {
+        console.error("Erro ao buscar fornecedor do produto:", error);
+        toast.error("Erro ao carregar fornecedor do produto.");
+      }
+    }
   };
 
   const handleReset = () => {
@@ -151,12 +189,11 @@ const EntradaProdutos = () => {
             Selecione
           </option>
           {suppliers.map((supplier, index) => (
-            <option key={index} value={supplier.id}>
+            <option key={index} value={supplier.id} disabled>
               {supplier.nome}
             </option>
           ))}
         </SelectField>
-
         <InputField
           label={"Data de Entrada"}
           name={"data_entrada"}

@@ -29,23 +29,33 @@ const Modal = ({ onConfirm, onCancel }) => {
 
 /* MODAL DE EDIÇÃO ENTRADAS */
 const ModalEditEntradas = ({ item, onClose }) => {
-  const { fornecedorData, handleChange } = useContext(FormContext);
+  const { entradaData, handleChange } = useContext(FormContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [suppliers, setSuppliers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get("/produtos");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
+
+    const fetchSuppliers = async () => {
       try {
         const response = await api.get("/fornecedores");
         setSuppliers(response.data);
       } catch (error) {
-        console.error("Erro ao buscar fornecedor:", error);
-        toast.error("Erro ao buscar fornecedores.");
+        console.error("Erro ao buscar fornecedores:", error);
       }
     };
 
-    fetchData();
+    fetchProducts();
+    fetchSuppliers();
   }, []);
 
   const handleFieldChange = (e) => {
@@ -90,12 +100,26 @@ const ModalEditEntradas = ({ item, onClose }) => {
       <Card title={"Editar Entradas"} icon={"bi bi-download"}>
         <ToastContainer />
         <FormContainer>
-          <InputField
+          <SelectField
             label={"Produto"}
-            name={"produto"}
-            value={entradaData.produto || ""}
+            name={"produto_id"}
+            value={entradaData.produto_id || ""}
             onChange={handleFieldChange}
-          />
+            warn={errors.produto_id}
+          >
+            <option value="">Selecione</option>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.nome}
+              </option>
+            ))}
+          </SelectField>
+          {/* <InputField
+            label={"Produto"}
+            name={"produto_id"}
+            value={entradaData.produto_id || ""}
+            onChange={handleFieldChange}
+          /> */}
           <InputField
             label={"Quantidade"}
             name={"quantidade"}
@@ -104,8 +128,8 @@ const ModalEditEntradas = ({ item, onClose }) => {
           />
           <SelectField
             label={"Fornecedor"}
-            name={"fornecedor"}
-            value={entradaData.fornecedor || ""}
+            name={"fornecedor_id"}
+            value={entradaData.fornecedor_id || ""}
             onChange={handleFieldChange}
           >
             <option value="" disabled>
@@ -271,6 +295,20 @@ const ModalEditRetiradas = ({ item, onClose }) => {
   const { retiradaData, handleChange } = useContext(FormContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get("/produtos");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
@@ -313,12 +351,20 @@ const ModalEditRetiradas = ({ item, onClose }) => {
       <Card title={"Editar Retirada"} icon={"bi bi-upload"}>
         <ToastContainer />
         <FormContainer>
-          <InputField
+          <SelectField
             label={"Produto"}
-            name={"produto"}
-            value={retiradaData.produto || ""}
+            name={"produto_id"}
+            value={retiradaData.produto_id || ""}
             onChange={handleFieldChange}
-          />
+            warn={errors.produto_id}
+          >
+            <option value="">Selecione</option>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.nome}
+              </option>
+            ))}
+          </SelectField>
           <InputField
             label={"Quantidade"}
             name={"quantidade"}
@@ -328,7 +374,7 @@ const ModalEditRetiradas = ({ item, onClose }) => {
           <InputField
             label={"Tipo de Saída"}
             name={"tipo_retirada"}
-            value={retiradaData.tipo_saida || ""}
+            value={retiradaData.tipo_retirada || ""}
             onChange={handleFieldChange}
           />
           <InputField

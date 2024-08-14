@@ -67,7 +67,7 @@ export const FormProvider = ({ children }) => {
   };
 
   const initialRetiradaData = {
-    produto: "",
+    produto_id: "",
     quantidade: "",
     tipo_retirada: "",
     data_retirada: "",

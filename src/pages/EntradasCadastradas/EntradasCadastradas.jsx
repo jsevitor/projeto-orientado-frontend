@@ -11,7 +11,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { Modal, ModalEditEntradas } from "../../components/Modal/Modal";
 import api from "../../services/api";
-import { formatCurrency, formatDate } from "../../utils/functions";
+import { formatCurrency, formatCustomDate } from "../../utils/functions";
 import { FormContext } from "../../contexts/FormContext";
 
 const EntradasCadastradas = () => {
@@ -25,6 +25,15 @@ const EntradasCadastradas = () => {
   const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/entradas");
+        setInputs(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar entradas:", error);
+      }
+    };
+
     const fetchProducts = async () => {
       try {
         const response = await api.get("/produtos");
@@ -43,6 +52,7 @@ const EntradasCadastradas = () => {
       }
     };
 
+    fetchData();
     fetchProducts();
     fetchSuppliers();
   }, []);
@@ -147,12 +157,6 @@ const EntradasCadastradas = () => {
                 )
               }
             ></i>
-
-            <i className="bi bi-filter"></i>
-          </div>
-          <div className="filter_search">
-            <i className="bi bi-search"></i>
-            <input type="text" placeholder="Pesquisar" />
           </div>
         </Filters>
       </HeaderContainer>
@@ -191,7 +195,7 @@ const EntradasCadastradas = () => {
                   (supplier) => supplier.id === input.fornecedor_id
                 )?.nome || "Desconhecido"}
               </td>
-              <td>{formatDate(input.data_entrada)}</td>
+              <td>{formatCustomDate(input.data_entrada)}</td>
               <td>{input.numero_lote}</td>
               <td>{formatCurrency(input.preco_compra)}</td>
             </tr>

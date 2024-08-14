@@ -139,11 +139,6 @@ const ProdutosCadastrados = () => {
               className="bi bi-pencil-square"
               onClick={handleOpenEditModal}
             ></i>
-            <i className="bi bi-filter"></i>
-          </div>
-          <div className="filter_search">
-            <i className="bi bi-search"></i>
-            <input type="text" placeholder="Pesquisar" />
           </div>
         </Filters>
       </HeaderContainer>

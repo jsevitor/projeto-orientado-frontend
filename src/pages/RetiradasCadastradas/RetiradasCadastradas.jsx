@@ -11,7 +11,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { Modal, ModalEditRetiradas } from "../../components/Modal/Modal";
 import api from "../../services/api";
-import { formatCurrency, formatDate } from "../../utils/functions";
+import { formatCustomDate } from "../../utils/functions";
 import { FormContext } from "../../contexts/FormContext";
 
 const RetiradasCadastradas = () => {
@@ -21,6 +21,7 @@ const RetiradasCadastradas = () => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [itemToEdit, setItemToEdit] = useState(null);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +33,17 @@ const RetiradasCadastradas = () => {
       }
     };
 
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get("/produtos");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
+
     fetchData();
+    fetchProducts();
   }, []);
 
   const handleOpenModal = () => {
@@ -135,11 +146,6 @@ const RetiradasCadastradas = () => {
                 )
               }
             ></i>
-            <i className="bi bi-filter"></i>
-          </div>
-          <div className="filter_search">
-            <i className="bi bi-search"></i>
-            <input type="text" placeholder="Pesquisar" />
           </div>
         </Filters>
       </HeaderContainer>
@@ -167,10 +173,13 @@ const RetiradasCadastradas = () => {
                   onChange={() => handleCheckboxChange(output.id)}
                 />
               </td>
-              <td>{output.produto}</td>
+              <td>
+                {products.find((product) => product.id === output.produto_id)
+                  ?.nome || "Desconhecido"}
+              </td>
               <td>{output.quantidade}</td>
-              <td>{output.tipo_saida}</td>
-              <td>{output.data_retirada}</td>
+              <td>{output.tipo_retirada}</td>
+              <td>{formatCustomDate(output.data_retirada)}</td>
               <td>{output.numero_lote}</td>
             </tr>
           ))}

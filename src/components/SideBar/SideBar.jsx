@@ -148,15 +148,14 @@ const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
                     <ItemTitle>Cadastrar Retirada</ItemTitle>
                   </Link>
 
+                  <Link to={"/produtos-cadastrados"}>
+                    <ItemTitle>Produtos Cadastrados</ItemTitle>
+                  </Link>
                   <Link to={"/entradas"}>
                     <ItemTitle>Entradas Cadastradas</ItemTitle>
                   </Link>
                   <Link to={"/retiradas"}>
                     <ItemTitle>Retiradas Cadastradas</ItemTitle>
-                  </Link>
-
-                  <Link to={"/produtos-cadastrados"}>
-                    <ItemTitle>Produtos Cadastrados</ItemTitle>
                   </Link>
                 </SubMenuItem>
               </SubMenu>
@@ -183,12 +182,12 @@ const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
             )}
           </MenuItem>
 
-          <MenuItem>
+          {/* <MenuItem>
             <Link to={"/painel-controle"}>
               <Icon as={BsGear} />
               {!menuCollapsed && <ItemTitle>Painel de Controle</ItemTitle>}
             </Link>
-          </MenuItem>
+          </MenuItem> */}
         </MenuItems>
       </NavContainer>
     </Container>

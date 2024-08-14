@@ -12,14 +12,15 @@ export function formatDate(dateString) {
   return `${day}/${month}/${year}`;
 }
 
-export function formatCustomDate(dateStr) {
-  const [dayAndTime, monthYear] = dateStr.split("/");
+export function formatCustomDate(isoString) {
+  // Cria um novo objeto Date a partir da string ISO
+  const date = new Date(isoString);
 
-  // Extrai o dia da parte antes do 'T'
-  const day = dayAndTime.split("T")[0];
+  // Extrai o dia, mês e ano
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Os meses são de 0 a 11
+  const year = date.getFullYear();
 
-  // Constrói a data formatada
-  const formattedDate = `${day}/${monthYear}`;
-
-  return formattedDate;
+  // Retorna a data no formato DD/MM/YYYY
+  return `${day}/${month}/${year}`;
 }
