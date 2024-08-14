@@ -163,23 +163,10 @@ const SideBar = ({ active, menuCollapsed, setMenuCollapsed }) => {
           </MenuItem>
 
           <MenuItem>
-            <Link to={"#"} onClick={() => toggleSubMenu("movimentacoes")}>
+            <Link to={"/movimentacoes"}>
               <Icon as={BsArrowLeftRight} />
               {!menuCollapsed && <ItemTitle>Movimentações</ItemTitle>}
-              {!menuCollapsed &&
-                (subMenus.movimentacoes ? <BsChevronUp /> : <BsChevronDown />)}
             </Link>
-            {!menuCollapsed && (
-              <SubMenu isOpen={subMenus.movimentacoes}>
-                <SubMenuItem
-                  className={subMenus.movimentacoes ? "collapsedSubMenu" : ""}
-                >
-                  <Link to={"/movimentacoes"}>
-                    <ItemTitle>Movimentações</ItemTitle>
-                  </Link>
-                </SubMenuItem>
-              </SubMenu>
-            )}
           </MenuItem>
 
           {/* <MenuItem>
