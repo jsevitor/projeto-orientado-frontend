@@ -1,117 +1,62 @@
-# Sistema de Controle de Estoque
+# Sistema de Controle de Estoque - Frios Moretti
 
-Este projeto é um sistema de gerenciamento de estoque desenvolvido com React no frontend e Node.js no backend.
+Este projeto é a interface frontend do sistema de controle de estoque, desenvolvido com React. Ele permite a interação do usuário com o backend, possibilitando o cadastro, consulta e manipulação de fornecedores, produtos, entradas e retiradas de estoque. Desenvolvido como parte da disciplina de Projeto Orientado.
 
-## Funcionalidades
+## 🚀 Começando
 
-- Cadastro de Fornecedores
-- Cadastro de Produtos
-- Cadastro de Usuários
-- Entrada de Produtos no Estoque
-- Retirada de Produtos do Estoque
+Essas instruções permitirão que você obtenha uma cópia do frontend do projeto na sua máquina local para fins de desenvolvimento e teste.
 
-## Tecnologias Utilizadas
+### 📋 Pré-requisitos
 
-### Frontend
+Você precisará ter instalado:
 
-- React
-- React Router Dom
-- React Context API
-- Axios
-- React Toastify
-- Vite
-- Styled-Components
-- Bootstrap Icons
+- [Node.js](https://nodejs.org/) (v14 ou superior)
+- [npm](https://www.npmjs.com/) 
 
-### Backend
+### 🔧 Instalação
 
-- Node.js
-- Express
-- Cors
-- Mysql
-
-## Estrutura de Diretórios
-
-```
-frontend/         # Código fonte do frontend React
-  |-- public/
-  |-- src/
-      |-- components/
-      |-- contexts/
-      |-- pages/
-      |-- services/
-      |-- styles/
-      |-- App.js
-      |-- index.js
-api/          # Código fonte do backend Node.js
-  |-- controllers/
-  |-- models/
-  |-- routes/
-  |-- utils/
-  |-- server.js
-README.md         # Este arquivo
-```
-
-## Instalação
-
-### Requisitos
-
-- Node.js
-- npm ou yarn
-- Mysql
-
-### Passos
+Siga os passos abaixo para configurar o ambiente de desenvolvimento do frontend:
 
 1. **Clonar o repositório:**
-
-   ```
-   git clone https://github.com/jsevitor/projeto-orientado-parcial.git
-   cd projeto-orientado-parcial
-   ```
-
-2. **Instalar dependências do frontend:**
-
-   ```
-   cd frontend
-   npm install   # ou yarn install
+   ```bash
+   git clone https://github.com/jsevitor/projeto-orientado-frontend.git
+   cd projeto-orientado-frontend
    ```
 
-3. **Instalar dependências do backend:**
-
-   ```
-   cd ../api
-   npm install   # ou yarn install
+2. **Instalar as dependências do projeto:**
+   ```bash
+   npm install
    ```
 
-4. **Configuração do banco de dados:**
+3. **Iniciar o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
 
-   - Configure o MongoDB de acordo com as configurações especificadas em `backend/server.js` ou no arquivo de configuração correspondente.
+. O servidor estará disponível em [http://localhost:5173](http://localhost:5173).
 
-5. **Executar a aplicação:**
+### 🛠️ Construído com
 
-   - **Backend:**
+- [React](https://reactjs.org/) - Biblioteca JavaScript para interfaces de usuário
+- [React Router Dom](https://reactrouter.com/) - Gerenciamento de rotas
+- [React Context API](https://reactjs.org/docs/context.html) - Gerenciamento de estado
+- [Axios](https://axios-http.com/) - Cliente HTTP baseado em Promises
+- [React Toastify](https://fkhadra.github.io/react-toastify/) - Notificações
+- [Vite](https://vitejs.dev/) - Ferramenta de build
+- [Styled-Components](https://styled-components.com/) - Estilização com CSS-in-JS
+- [Bootstrap Icons](https://icons.getbootstrap.com/) - Biblioteca de ícones
 
-     ```
-     npm start   # ou yarn start
-     ```
+### ✒️ Autores
 
-   - **Frontend:**
+- **José Vitor Oliveira** - *Frontend* - [jsevitor](https://github.com/jsevitor)
+- **Gabriela Queiroz** - *Documentação* - [GabiQueiroz26](https://github.com/GabiQueiroz26)
+- **Vinícius Nunes** - *Designer* - [vinicgabriel](https://github.com/vinicgabriel)
+- **Roberto (João)** - *Testes* - [Apaskasko](https://github.com/Apaskasko)
 
-     ```
-     cd ../frontend
-     npm run dev   # ou yarn run dev
-     ```
+### 📄 Licença
 
-6. Acesse a aplicação no navegador em `http://localhost:3000`.
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE.md) para detalhes.
 
-## Contribuição
+### 🎁 Expressões de gratidão
 
-- Para contribuir com melhorias ou correções, siga os passos de instalação e faça um fork deste repositório.
-- Crie uma branch, faça as alterações e submeta um pull request descrevendo as alterações realizadas.
-
-## Autores
-
-- Gabriela Queiroz
-- José Vitor Oliveira
-- Roberto (João)
-- Vinícius Nunes
+- Agradecimentos especiais aos colegas de equipe e ao professor que auxiliaram no desenvolvimento deste projeto. 🙌
